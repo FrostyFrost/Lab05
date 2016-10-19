@@ -16,22 +16,36 @@ void calc (uint16_t op1, char action, uint16_t op2);
 
 int _tmain(int argc, _TCHAR* argv[])
 {
-	//uint8_t ui8 = 11;
-	
-	char str[] = "hello!!";
-	uint16_t i = 15 & 127;
-	cout << i;
-	print_in_hex(&i, sizeof(i)-1);
-	print_in_binary(&i, sizeof(i)-1);
+	uint16_t op1 ;
+	uint16_t op2 ;
+	char act ;
 
-	//calc (1025, '&', 127);
+	char str[] = "hello!!";
+	uint16_t i = 127 ;
+	
+	cout << i<< endl;
+	print_in_hex(&i, sizeof(i));
+	print_in_binary(&i, sizeof(i));
+	//i=15&14;
+	//print_in_binary(&i, sizeof(i)-1);
+	
+	cin >>  op1 ;
+	//cout << op1;
+	cin >>  act; 
+	//cout << act;
+
+	
+	cin >> op2;
+	//cout <<op2;
+
+	calc (op1, act, op2);
 	system("pause");
 	return 0;
 }
 
 void 
 print_in_hex(uint8_t byte){
-	std::cout <<std::hex << (byte & 255) << endl;
+	std::cout <<std::hex << (byte & 255)<<" ";
 	return;
 };
 
@@ -43,12 +57,13 @@ print_in_hex(const void* data, size_t size){
 	for (int i = 0; i<size; i++){
 		tmp = *((char*)data + i);	
 		print_in_hex(tmp);
+		if (i%2) {cout << endl;}
 	}
 	return;
 };
 void 
 print_in_binary(uint8_t byte){
-	std::cout << bitset<sizeof(byte) * 8> (byte )<< endl;
+	std::cout << bitset<sizeof(byte) * 8> (byte )<< " ";
 };
 void 
 print_in_binary(const void* data, size_t size){
@@ -56,6 +71,7 @@ print_in_binary(const void* data, size_t size){
 	for (int i = 0; i<size; i++){
 		tmp = *((char*)data + i);	
 		print_in_binary(tmp);
+		if (i%2) {cout << endl;}
 	}
 	return;
 };
@@ -64,12 +80,12 @@ void calc (uint16_t op1, char action, uint16_t op2){
 	uint16_t tmp;
 	switch (action) {
 	case '&':
-		tmp = op1	 &  op2;
+		tmp = op1 & op2;
 		print_in_binary (&tmp, sizeof(tmp));/*; sizeof(tmp-1);*/
 		break;
 	case '|':
-		tmp = 0;//op1	 &  op2;
-		//del
+		tmp = op1 | op2;
+		print_in_binary (&tmp, sizeof(tmp));/*; sizeof(tmp-1);*/
 		break;
 	default:
 		cout << "wrong action";
