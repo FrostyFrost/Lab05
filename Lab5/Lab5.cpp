@@ -1,11 +1,18 @@
 // Lab5.cpp: определяет точку входа для консольного приложения.
 //
-
+//#define _CRT_SECURE_NO_WARNINGS
 #include "stdafx.h"
+#include <fstream>
 #include <iostream>
 #include <stdint.h>
 #include <bitset> 
-#include <array>
+#include <windows.h>
+#include <cstdint>
+
+//#include <array>
+//
+//#include <istream>
+//#include <io.h>
 
 using namespace std;
 struct Student;
@@ -27,21 +34,54 @@ uint8_t num_courses;
 Student* starosta;
 };
 
+
+
 int _tmain(int argc, _TCHAR* argv[])
 {
 	uint16_t op1 ;
 	uint16_t op2 ;
 	char act ;
 	
+
+	//STUDENTS
+	//Student students[3];
+	//students_insrt (*students, sizeof(students)/sizeof(students[0]));
+	//for (int i = 0; i<3; i++){
+	//	 calc( (uint16_t)&students , '-' ,(uint16_t)&students[i].name);
+	//	 //cout << sizeof(&students[i].year) << endl;
+	//	 cout << &students[i].name << "_" << &students[i].year << endl;
+	//	 cout << offsetof (Student, year)<< endl;
+
+
+	// BMP
+
+	FILE* file = fopen("D:\\Projects\\Lab5\\L5.bmp", "r");
+	//ifstream file ("D:\Projects\Lab5\l5.bmp", std::ios::in | std::ifstream::binary);
+	//BITMAPFILEHEADER bfh ;
+	//BITMAPINFOHEADER bih ;
+	//RGBQUAD rgbquad;
+	//int width, height;
+	size_t size;
+	char data;
 	
-	Student students[3];
-	students_insrt (*students, sizeof(students)/sizeof(students[0]));
-	for (int i = 0; i<3; i++){
-		 calc( (uint16_t)&students , '-' ,(uint16_t)&students[i].name);
-		 //cout << sizeof(&students[i].year) << endl;
-		 cout << &students[i].name << "_" << &students[i].year << endl;
-		 cout << offsetof (Student, year)<< endl;
+	if (file){
+		fseek(file,0,SEEK_END);
+		size = ftell(file);
+		fseek(file,0,SEEK_SET);
+		
+		//data = new char [size];
+
+		for (size_t i = 0 ; i>size; i++){
+				data = fgetc(file);
+				print_in_binary(data);
+		}
+		while((data=fgetc(fp)) !=EOF) {
+		cout<<  data << endl;
+
+}
+
 	}
+	
 	
 	//calc (op1, act, op2);
 	
