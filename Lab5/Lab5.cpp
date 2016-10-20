@@ -81,11 +81,11 @@ void calc (uint16_t op1, char action, uint16_t op2){
 	switch (action) {
 	case '&':
 		tmp = op1 & op2;
-		print_in_binary (&tmp, sizeof(tmp));/*; sizeof(tmp-1);*/
+		print_in_binary (&tmp, sizeof(tmp));
 		break;
 	case '|':
 		tmp = op1 | op2;
-		print_in_binary (&tmp, sizeof(tmp));/*; sizeof(tmp-1);*/
+		print_in_binary (&tmp, sizeof(tmp));
 		break;
 	default:
 		cout << "wrong action";
