@@ -37,7 +37,10 @@ int _tmain(int argc, _TCHAR* argv[])
 	Student students[3];
 	students_insrt (*students, sizeof(students)/sizeof(students[0]));
 	for (int i = 0; i<3; i++){
-			cout << students[i].name << endl;
+		 calc( (uint16_t)&students , '-' ,(uint16_t)&students[i].name);
+		 //cout << sizeof(&students[i].year) << endl;
+		 cout << &students[i].name << "_" << &students[i].year << endl;
+		 cout << offsetof (Student, year)<< endl;
 	}
 	
 	//calc (op1, act, op2);
@@ -90,6 +93,16 @@ void calc (uint16_t op1, char action, uint16_t op2){
 	case '|':
 		tmp = op1 | op2;
 		print_in_binary (&tmp, sizeof(tmp));/*; sizeof(tmp-1);*/
+		break;
+	case '+':
+		tmp = op1 + op2;
+		print_in_binary (&tmp, sizeof(tmp));/*; sizeof(tmp-1);*/
+		break;
+	case '-':
+		tmp = op1 - op2;
+		//print_in_binary (&tmp, sizeof(tmp));/*; sizeof(tmp-1);*/
+		print_in_hex (&tmp, sizeof(tmp));/*; sizeof(tmp-1);*/
+
 		break;
 	default:
 		cout << "wrong action";
