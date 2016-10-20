@@ -5,40 +5,47 @@
 #include <iostream>
 #include <stdint.h>
 #include <bitset> 
+#include <array>
 
 using namespace std;
+struct Student;
+
 void print_in_hex(uint8_t byte);
 void print_in_hex(const void* data, size_t size);
 void print_in_binary(uint8_t byte);
 void print_in_binary(const void* data, size_t size);
 void calc (uint16_t op1, char action, uint16_t op2);
+void students_insrt(Student& student, int num);
 
+
+struct Student {
+string name;
+uint16_t year;
+uint8_t mean_grade;
+uint8_t sex : 1;
+uint8_t num_courses;
+Student* starosta;
+};
 
 int _tmain(int argc, _TCHAR* argv[])
 {
 	uint16_t op1 ;
 	uint16_t op2 ;
 	char act ;
-
-	char str[] = "hello!!";
-	uint16_t i = 127 ;
 	
-	cout << i<< endl;
-	print_in_hex(&i, sizeof(i));
-	print_in_binary(&i, sizeof(i));
-	//i=15&14;
-	//print_in_binary(&i, sizeof(i)-1);
 	
-	cin >>  op1 ;
-	//cout << op1;
-	cin >>  act; 
-	//cout << act;
-
+	Student students[3];
+	students_insrt (*students, sizeof(students)/sizeof(students[0]));
+	for (int i = 0; i<3; i++){
+		 calc( (uint16_t)&students , '-' ,(uint16_t)&students[i].name);
+		 //cout << sizeof(&students[i].year) << endl;
+		 cout << &students[i].name << "_" << &students[i].year << endl;
+		 cout << offsetof (Student, year)<< endl;
+	}
 	
-	cin >> op2;
-	//cout <<op2;
-
-	calc (op1, act, op2);
+	//calc (op1, act, op2);
+	
+ 
 	system("pause");
 	return 0;
 }
@@ -87,9 +94,43 @@ void calc (uint16_t op1, char action, uint16_t op2){
 		tmp = op1 | op2;
 		print_in_binary (&tmp, sizeof(tmp));
 		break;
+	case '+':
+		tmp = op1 + op2;
+		print_in_binary (&tmp, sizeof(tmp));
+		break;
+	case '-':
+		tmp = op1 - op2;
+		print_in_hex (&tmp, sizeof(tmp));
+
+		break;
 	default:
 		cout << "wrong action";
 		break;
 	}
 };
+void students_insrt(Student& student, int num){
+	Student* stud = &student;
+	stud[0].name = "Andrey";
+	stud[0].year = 2006;
+	stud[0].mean_grade = 5;
+	stud[0].sex = 1;
+	stud[0].num_courses = 24;
+	stud[0].starosta = &stud[2];
+	
+
+	stud[1].name = "Ivan";
+	stud[1].year = 2008;
+	stud[1].mean_grade = 4;
+	stud[1].sex = 1;
+	stud[1].num_courses = 22;
+	stud[1].starosta = &stud[2];
+
+	stud[2].name = "Nata";
+	stud[2].year = 2007;
+	stud[2].mean_grade = 3;
+	stud[2].sex = 0;
+	stud[2].num_courses = 21;
+	stud[2].starosta = nullptr;
+
+}
 
