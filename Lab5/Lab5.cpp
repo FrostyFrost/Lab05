@@ -71,14 +71,12 @@ int _tmain(int argc, _TCHAR* argv[])
 		
 		//data = new char [size];
 
-		for (size_t i = 0 ; i>size; i++){
+		for (size_t i = 0 ; i<size; i++){
 				data = fgetc(file);
 				print_in_binary(data);
+				cout<<  data << endl;
 		}
-		while((data=fgetc(fp)) !=EOF) {
-		cout<<  data << endl;
-
-}
+	
 
 	}
 	
