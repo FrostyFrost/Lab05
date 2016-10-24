@@ -61,21 +61,28 @@ int _tmain(int argc, _TCHAR* argv[])
 	//BITMAPINFOHEADER bih ;
 	//RGBQUAD rgbquad;
 	//int width, height;
-	size_t size;
+	int size;
 	char data;
-	
+	char msg[]= "hi There!";
 	if (file){
 		fseek(file,0,SEEK_END);
 		size = ftell(file);
 		fseek(file,0,SEEK_SET);
 		
 		//data = new char [size];
-
+		cout<< size<< endl;
 		for (size_t i = 0 ; i<size; i++){
 				data = fgetc(file);
 				print_in_binary(data);
-				cout<<  data << endl;
+				cout<< "data:" << data << endl;				
+				
+				data = msg[i];
+
+				print_in_binary(data);
+				cout<< "data_mod:" << data << endl;
+				cin>>act;
 		}
+		
 	
 
 	}
