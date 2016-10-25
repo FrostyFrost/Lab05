@@ -55,43 +55,62 @@ int _tmain(int argc, _TCHAR* argv[])
 
 	// BMP
 
-	FILE* file = fopen("D:\\Projects\\Lab5\\L5.bmp", "r");
-	//ifstream file ("D:\Projects\Lab5\l5.bmp", std::ios::in | std::ifstream::binary);
-	//BITMAPFILEHEADER bfh ;
-	//BITMAPINFOHEADER bih ;
-	//RGBQUAD rgbquad;
-	//int width, height;
-	int size;
-	char data;
-	char msg[]= "hi There!";
-	if (file){
-		fseek(file,0,SEEK_END);
-		size = ftell(file);
-		fseek(file,0,SEEK_SET);
-		
-		//data = new char [size];
-		cout<< size<< endl;
-		for (size_t i = 0 ; i<size; i++){
-				data = fgetc(file);
-				print_in_binary(data);
-				cout<< "data:" << data << endl;				
-				
-				data = msg[i];
+	//FILE* file = fopen("D:\\Projects\\Lab5\\L5.bmp", "r");
+	////ifstream file ("D:\Projects\Lab5\l5.bmp", std::ios::in | std::ifstream::binary);
+	////BITMAPFILEHEADER bfh ;
+	////BITMAPINFOHEADER bih ;
+	////RGBQUAD rgbquad;
+	////int width, height;
+	//int size;
+	//char data;
+	//char msg[]= "hi There!";
+	//if (file){
+	//	fseek(file,0,SEEK_END);
+	//	size = ftell(file);
+	//	fseek(file,0,SEEK_SET);
+	//	
+	//	//data = new char [size];
+	//	cout<< size<< endl;
+	//	for (size_t i = 0 ; i<size; i++){
+	//			data = fgetc(file);
+	//			print_in_binary(data);
+	//			cout<< "data:" << data << endl;				
+	//			
+	//			data = msg[i];
 
-				print_in_binary(data);
-				cout<< "data_mod:" << data << endl;
-				cin>>act;
-		}
-		
-	
+	//			print_in_binary(data);
+	//			cout<< "data_mod:" << data << endl;
+	//			cin>>act;
+	//	}
+//}
+	// FILE READ 
 
+
+
+	char fname[100];
+	string fname_str ;
+	int str_end=0;
+	cin >> fname;
+	for (int i = 0; fname[i]!=0; i++){
+		//printf( "%i %c\n", i, fname[i] );
+		if (fname[i] == '*' || fname[i] == '<' || fname[i] == '>'){
+			printf("Wrong name\n");
+			return 0;
+		};
 	}
+
+	if (strstr(fname,".txt")-fname != (strchr(fname, '\0')-fname-4)){printf("not TXT\n");}
+
+
+
+	
 	
 	
 	//calc (op1, act, op2);
 	
  
 	system("pause");
+	//free(fname);
 	return 0;
 }
 
