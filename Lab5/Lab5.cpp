@@ -99,17 +99,53 @@ int _tmain(int argc, _TCHAR* argv[])
 		};
 	}
 
-	if (strstr(fname,".txt")-fname != (strchr(fname, '\0')-fname-4)){printf("not TXT\n");}
+	if (strstr(fname,".txt")-fname != (strchr(fname, '\0')-fname-4))
+	{
+		printf("not TXT\n");
+	}
+
+	FILE * f ;
+	if ((f=fopen(fname, "r")) == NULL) {
+		 printf("Cannot open file");
+		 //return -1;
+	}
+	fseek(f,0,FILE_END);\
+	int filesize= ftell(f);
+	fseek(f,0,FILE_BEGIN);
+
+	printf("%i\n", filesize);
+
+	char * buffer = (char*)malloc(filesize * sizeof(char));  // D:\Projects\Lab5\ttt.txt
+	fread(buffer,sizeof(char),filesize,f);
+
+	
+	printf("%s\n", buffer);
+	//find input_str
+	char input_str[100];
+	printf("Enter string\n" );
+	cin >> input_str;
 
 
 
-	
-	
-	
+
+
+
+	//Count '.' to find the number of sentences
+
+	char* pnt = strchr(buffer, '.');
+	int num_of_sent = 0;
+	while (pnt !=0) 
+	{
+		num_of_sent++;
+		pnt  = strchr(pnt+1, '.');
+	}
+	printf("Num of sents %i\n", num_of_sent);
 	//calc (op1, act, op2);
 	
  
 	system("pause");
+	//fclose(f);
+
 	//free(fname);
 	return 0;
 }
