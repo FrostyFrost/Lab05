@@ -1,11 +1,18 @@
 // Lab5.cpp: определяет точку входа для консольного приложения.
 //
-
+//#define _CRT_SECURE_NO_WARNINGS
 #include "stdafx.h"
+#include <fstream>
 #include <iostream>
 #include <stdint.h>
 #include <bitset> 
-#include <array>
+#include <windows.h>
+#include <cstdint>
+
+//#include <array>
+//
+//#include <istream>
+//#include <io.h>
 
 using namespace std;
 struct Student;
@@ -27,26 +34,83 @@ uint8_t num_courses;
 Student* starosta;
 };
 
+
+
 int _tmain(int argc, _TCHAR* argv[])
 {
 	uint16_t op1 ;
 	uint16_t op2 ;
 	char act ;
 	
-	
-	Student students[3];
-	students_insrt (*students, sizeof(students)/sizeof(students[0]));
-	for (int i = 0; i<3; i++){
-		 calc( (uint16_t)&students , '-' ,(uint16_t)&students[i].name);
-		 //cout << sizeof(&students[i].year) << endl;
-		 cout << &students[i].name << "_" << &students[i].year << endl;
-		 cout << offsetof (Student, year)<< endl;
+
+	//STUDENTS
+	//Student students[3];
+	//students_insrt (*students, sizeof(students)/sizeof(students[0]));
+	//for (int i = 0; i<3; i++){
+	//	 calc( (uint16_t)&students , '-' ,(uint16_t)&students[i].name);
+	//	 //cout << sizeof(&students[i].year) << endl;
+	//	 cout << &students[i].name << "_" << &students[i].year << endl;
+	//	 cout << offsetof (Student, year)<< endl;
+
+
+	// BMP
+
+	//FILE* file = fopen("D:\\Projects\\Lab5\\L5.bmp", "r");
+	////ifstream file ("D:\Projects\Lab5\l5.bmp", std::ios::in | std::ifstream::binary);
+	////BITMAPFILEHEADER bfh ;
+	////BITMAPINFOHEADER bih ;
+	////RGBQUAD rgbquad;
+	////int width, height;
+	//int size;
+	//char data;
+	//char msg[]= "hi There!";
+	//if (file){
+	//	fseek(file,0,SEEK_END);
+	//	size = ftell(file);
+	//	fseek(file,0,SEEK_SET);
+	//	
+	//	//data = new char [size];
+	//	cout<< size<< endl;
+	//	for (size_t i = 0 ; i<size; i++){
+	//			data = fgetc(file);
+	//			print_in_binary(data);
+	//			cout<< "data:" << data << endl;				
+	//			
+	//			data = msg[i];
+
+	//			print_in_binary(data);
+	//			cout<< "data_mod:" << data << endl;
+	//			cin>>act;
+	//	}
+//}
+	// FILE READ 
+
+
+
+	char fname[100];
+	string fname_str ;
+	int str_end=0;
+	cin >> fname;
+	for (int i = 0; fname[i]!=0; i++){
+		//printf( "%i %c\n", i, fname[i] );
+		if (fname[i] == '*' || fname[i] == '<' || fname[i] == '>'){
+			printf("Wrong name\n");
+			return 0;
+		};
 	}
+
+	if (strstr(fname,".txt")-fname != (strchr(fname, '\0')-fname-4)){printf("not TXT\n");}
+
+
+
+	
+	
 	
 	//calc (op1, act, op2);
 	
  
 	system("pause");
+	//free(fname);
 	return 0;
 }
 
