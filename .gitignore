@@ -1,2 +1,11 @@
 *.opensdf
 *Lab5.sdf
+Debug/Lab5.exe
+Debug/Lab5.ilk
+Debug/Lab5.pdb
+Lab5.v11.suo
+Lab5/Debug/Lab5.log
+Lab5/Debug/Lab5.obj
+Lab5/Debug/link.read.1.tlog
+Lab5/Debug/vc110.idb
+Lab5/Debug/vc110.pdb
