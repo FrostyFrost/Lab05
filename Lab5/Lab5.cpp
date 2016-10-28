@@ -87,10 +87,11 @@ int _tmain(int argc, _TCHAR* argv[])
 
 
 
-	char fname[100];
-	string fname_str ;
+	char fname[100]="D:\\Projects\\Lab5\\tt.txt";
+	
 	int str_end=0;
-	cin >> fname;
+	//cin >> fname;
+	
 	for (int i = 0; fname[i]!=0; i++){
 		//printf( "%i %c\n", i, fname[i] );
 		if (fname[i] == '*' || fname[i] == '<' || fname[i] == '>'){
@@ -115,7 +116,7 @@ int _tmain(int argc, _TCHAR* argv[])
 
 	printf("%i\n", filesize);
 
-	char * buffer = (char*)malloc(filesize * sizeof(char));  // D:\Projects\Lab5\ttt.txt
+	char * buffer = (char*)malloc((filesize+1) * (sizeof(char)));  // D:\Projects\Lab5\tt.txt
 	fread(buffer,sizeof(char),filesize,f);
 
 	
@@ -123,7 +124,7 @@ int _tmain(int argc, _TCHAR* argv[])
 	//find input_str
 	char input_str[100];
 	printf("Enter string\n" );
-	cin >> input_str;
+	//cin >> input_str;
 
 
 
@@ -134,10 +135,19 @@ int _tmain(int argc, _TCHAR* argv[])
 
 	char* pnt = strchr(buffer, '.');
 	int num_of_sent = 0;
+	int sum = 0 ;
+	int sent_len[5] = {0,0,0,0,0} ;
 	while (pnt !=0) 
 	{
+		char sent[] = " " ;
 		num_of_sent++;
-		pnt  = strchr(pnt+1, '.');
+		sent_len[num_of_sent] = (pnt - buffer) - sent_len[num_of_sent-1] +1 ;
+		
+
+		strncpy(sent, buffer + sum, sent_len[num_of_sent]);
+		printf("len of sent = %i\n%s\n", sent_len[num_of_sent], sent);
+		sum =(pnt - buffer);
+		pnt  = strchr(pnt+2, '.');
 	}
 	printf("Num of sents %i\n", num_of_sent);
 	//calc (op1, act, op2);
